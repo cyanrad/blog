@@ -3,5 +3,6 @@
     "trailingComma": "all",
     "plugins": [
         "prettier-plugin-tailwindcss"
-    ]
+    ],
+    "tabWidth": 2
 }
