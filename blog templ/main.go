@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"main/templ"
 	"net/http"
 	"os"
 )
@@ -12,16 +13,17 @@ type Person struct {
 }
 
 func main() {
-	basicCard := Card("/1", "internship at the emirates", "static/bg.png", "devops", "4 Months Ago", "10 Minutes")
-	body := Body(basicCard)
+	basicCard := templ.Card("/1", "internship at the emirates", "resources/bg.png", "devops", "4 Months Ago", "10 Minutes")
+	body := templ.Body(basicCard)
 
-	indexFile, err := os.OpenFile("index.html", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+	// this should relly be an env file
+	indexFile, err := os.OpenFile("./static/index.html", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	body.Render(context.Background(), indexFile)
 
-	http.Handle("/", http.FileServer(http.Dir("./")))
+	http.Handle("/", http.FileServer(http.Dir("./static")))
 	http.ListenAndServe(":3000", nil)
 }
