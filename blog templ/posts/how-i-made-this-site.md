@@ -1,5 +1,3 @@
-# This Is
-
 ## a testing file
 
 for **markdown** generation _to_ see how the html tags are **_generated_**
@@ -10,11 +8,6 @@ line break test
 
 the above should be an hr tag
 and the below is a block quote
-
-> this is a block
-> _see_
->
-> > this is a nested block
 
 - this
 - is a
@@ -44,5 +37,4 @@ func main() {
 
 this is a basic [link](link.com)
 this is an image ![IMAGEEE](../resources/bg.png)
-this is a <hhhh:\\uwu.quick.link>
 this is my email ;\) <rjabraouti@outlook.com>
