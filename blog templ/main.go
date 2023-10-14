@@ -13,7 +13,7 @@ type Person struct {
 }
 
 func main() {
-	basicCard := templ.Card("/1", "internship at the emirates", "resources/bg.png", "devops", "4 Months Ago", "10 Minutes")
+	basicCard := templ.Card("How I Made This Site", "devops", "4 Months Ago", "10 Minutes")
 	body := templ.Body(basicCard)
 
 	// this should relly be an env file

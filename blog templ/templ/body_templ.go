@@ -26,7 +26,7 @@ func Body(cards templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		var_2 := `Awesome Blog`
+		var_2 := `Radwan's Awesome Blog`
 		_, err = templBuffer.WriteString(var_2)
 		if err != nil {
 			return err
