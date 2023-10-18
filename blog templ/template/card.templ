@@ -1,10 +1,10 @@
-package templ
+package template
 
 templ Card(title string, tag string, date string, readingTime string) {
 	<a href={ templ.URL("posts/" + title + ".html") }>
 		<div class="group m-4 flex h-[30rem] w-96 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-indigo-500 hover:bg-neutral-900 hover:shadow-lg hover:shadow-indigo-900 hover:delay-100 hover:duration-300">
 			<div class="m-2 flex flex-col justify-end overflow-hidden rounded-md">
-				<img src={ "resources/" + title + ".png" } class="mb-3 w-full rounded-md"/>
+				<img src={ "static/resources/" + title + ".png" } class="mb-3 w-full rounded-md"/>
 				<em class="mb-3 font-serif text-2xl text-neutral-200 duration-200 hover:delay-100 group-hover:text-slate-300">
                     { title }
                 </em>

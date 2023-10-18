@@ -1,5 +1,5 @@
 run:	
-	templ generate -path "templ"
+	templ generate -path "template"
 	go run .
 
 posts:
