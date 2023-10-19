@@ -9,7 +9,9 @@ import "context"
 import "io"
 import "bytes"
 
-func Card(title string, tag string, date string, readingTime string) templ.Component {
+import "strconv"
+
+func Card(title string, tag string, date string, readingTime int) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 		templBuffer, templIsBuffer := w.(*bytes.Buffer)
 		if !templIsBuffer {
@@ -26,7 +28,7 @@ func Card(title string, tag string, date string, readingTime string) templ.Compo
 		if err != nil {
 			return err
 		}
-		var var_2 templ.SafeURL = templ.URL("posts/" + title + ".html")
+		var var_2 templ.SafeURL = templ.URL("post/" + title + ".html")
 		_, err = templBuffer.WriteString(templ.EscapeString(string(var_2)))
 		if err != nil {
 			return err
@@ -84,7 +86,7 @@ func Card(title string, tag string, date string, readingTime string) templ.Compo
 		if err != nil {
 			return err
 		}
-		var var_8 string = readingTime
+		var var_8 string = strconv.Itoa(readingTime) + "Minutes"
 		_, err = templBuffer.WriteString(templ.EscapeString(var_8))
 		if err != nil {
 			return err
