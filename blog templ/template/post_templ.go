@@ -9,7 +9,9 @@ import "context"
 import "io"
 import "bytes"
 
-func Post(body templ.Component, title string, hook string, tag string, date string, readingTime string) templ.Component {
+import "strconv"
+
+func Post(body templ.Component, title string, hook string, tag string, date string, readingTime int) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 		templBuffer, templIsBuffer := w.(*bytes.Buffer)
 		if !templIsBuffer {
@@ -22,12 +24,32 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 			var_1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, err = templBuffer.WriteString("<head><link rel=\"stylesheet\" href=\"static/style.css\"></head><body class=\"ml-[30rem] mr-[30rem] mt-24 flex flex-col justify-center bg-zinc-900 font-serif\"><div class=\"ml-32 mr-32 text-justify\"><h1 id=\"this-is\" class=\"mb-6 text-6xl font-semibold text-neutral-200\">")
+		_, err = templBuffer.WriteString("<head><link rel=\"stylesheet\" href=\"/static/style.css\"><link rel=\"stylesheet\" href=\"/static/atom-one-dark-reasonable.min.css\"><script src=\"/static/highlight.min.js\">")
 		if err != nil {
 			return err
 		}
-		var var_2 string = title
-		_, err = templBuffer.WriteString(templ.EscapeString(var_2))
+		var_2 := ``
+		_, err = templBuffer.WriteString(var_2)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</script></head><body class=\"ml-[30rem] mr-[30rem] mt-24 flex flex-col justify-center bg-zinc-900 font-serif\"><script>")
+		if err != nil {
+			return err
+		}
+		var_3 := `
+        hljs.highlightAll();
+      `
+		_, err = templBuffer.WriteString(var_3)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</script><div class=\"ml-32 mr-32 text-justify\"><h1 id=\"this-is\" class=\"mb-6 text-6xl font-semibold text-neutral-200\">")
+		if err != nil {
+			return err
+		}
+		var var_4 string = title
+		_, err = templBuffer.WriteString(templ.EscapeString(var_4))
 		if err != nil {
 			return err
 		}
@@ -35,21 +57,7 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		var var_3 string = tag
-		_, err = templBuffer.WriteString(templ.EscapeString(var_3))
-		if err != nil {
-			return err
-		}
-		_, err = templBuffer.WriteString(" ")
-		if err != nil {
-			return err
-		}
-		var_4 := `&#x2022; `
-		_, err = templBuffer.WriteString(var_4)
-		if err != nil {
-			return err
-		}
-		var var_5 string = date
+		var var_5 string = tag
 		_, err = templBuffer.WriteString(templ.EscapeString(var_5))
 		if err != nil {
 			return err
@@ -63,8 +71,22 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		var var_7 string = readingTime
+		var var_7 string = date
 		_, err = templBuffer.WriteString(templ.EscapeString(var_7))
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString(" ")
+		if err != nil {
+			return err
+		}
+		var_8 := `&#x2022; `
+		_, err = templBuffer.WriteString(var_8)
+		if err != nil {
+			return err
+		}
+		var var_9 string = strconv.Itoa(readingTime) + " Minutes"
+		_, err = templBuffer.WriteString(templ.EscapeString(var_9))
 		if err != nil {
 			return err
 		}
@@ -72,8 +94,8 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		var var_8 string = hook
-		_, err = templBuffer.WriteString(templ.EscapeString(var_8))
+		var var_10 string = hook
+		_, err = templBuffer.WriteString(templ.EscapeString(var_10))
 		if err != nil {
 			return err
 		}

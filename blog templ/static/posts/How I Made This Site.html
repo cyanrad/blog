@@ -1,38 +1,98 @@
-<h2 id="a-testing-file">a testing file</h2>
-<p>for <strong>markdown</strong> generation <em>to</em> see how the html
-tags are <strong><em>generated</em></strong> this is a<br />
-line break test</p>
-<hr />
-<p>the above should be an hr tag and the below is a block quote</p>
-<ul>
-<li>this</li>
-<li>is a
-<ul>
-<li>bullet point
-<ul>
-<li>list</li>
-</ul></li>
-</ul></li>
-</ul>
-<ol type="1">
-<li>this extra space :)</li>
-<li>on the other hand
-<ol type="1">
-<li>is a</li>
-<li>ordered</li>
-<li>list</li>
-</ol></li>
-</ol>
-<p>this is a <code>code</code> format</p>
-<p>this is a code block</p>
-<pre class="golang"><code>package main
+<h2 id="a-testing-file" class="mb-4 text-center text-4xl text-emerald-400">
+      A Testing File
+    </h2>
+    <p class="mb-4 text-justify text-xl text-neutral-200">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent laoreet
+      dui id erat aliquam aliquam. Integer lobortis semper nunc at dignissim.
+      Quisque luctus, sapien eu efficitur egestas, est justo consectetur mi, ac
+      tempus turpis urna vel quam. Etiam enim risus, laoreet vel augue at,
+      aliquet pulvinar nulla. Vestibulum eget tempor magna. Nam at felis
+      euismod, pulvinar erat in, consectetur libero. Duis sodales finibus est
+      sed laoreet. Curabitur gravida eros ut placerat tempus. Proin quis purus
+      ut sapien malesuada sollicitudin ac in dui. Quisque pretium porttitor
+    </p>
+    <br />
+
+    <h3 id="a-testing-file" class="mb-4 text-2xl text-emerald-400">
+      This is a 3rd Heading
+    </h3>
+    <p class="mb-4 text-justify text-xl text-neutral-200">
+      for <strong class="text-indigo-300">markdown</strong> generation
+      <em class="text-indigo-300">to</em> see how the html tags are
+      <em class="text-indigo-300">generated</em>
+    </p>
+
+    <p class="mb-4 text-justify text-xl text-neutral-200">
+      the above should be an hr tag and the below is a block quote
+    </p>
+    <br />
+
+    <ul class="mb-4 list-disc pl-4 text-xl text-neutral-200">
+      <li>this</li>
+      <li>
+        is a ut sapien malesuada sollicitudin ac in dui. Quisque pretium
+        porttitor sed laoreet. Curabitur gravida eros ut placerat tempus. Proin
+        quis purus
+        <ul class="list-disc pl-4">
+          <li>
+            bullet point
+            <ul class="list-disc pl-4">
+              <li>list</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <br />
+
+    <ol class="mb-4 list-decimal pl-4 text-xl text-neutral-200">
+      <li>this extra space :)</li>
+      <li>
+        on the other hand
+        <ol class="list-decimal pl-4 text-xl text-neutral-200">
+          <li>is a</li>
+          <li>ordered</li>
+          <li>list</li>
+        </ol>
+      </li>
+    </ol>
+    <br />
+
+    <p class="mb-4 text-justify text-xl text-neutral-200">
+      this is a
+      <code
+        class="rounded-md bg-zinc-700 p-1 font-mono text-lg text-emerald-300"
+        >code</code
+      >
+      format
+    </p>
+    <br />
+
+    <p class="mb-4 text-justify text-xl text-neutral-200">
+      this is a code block
+    </p>
+    <pre ><code class="rounded-md ">package main
 
 import fmt
 
 func main() {
     fmt.Println(&quot;:)&quot;)
 }</code></pre>
-<p>this is a basic <a href="link.com">link</a> this is an image <img
-src="../resources/bg.png" alt="IMAGEEE" /> this is my email ;) <a
-href="mailto:rjabraouti@outlook.com"
-class="email">rjabraouti@outlook.com</a></p>
+<br />
+
+<p class="mb-4 text-justify text-xl text-neutral-200">
+  this is a basic
+  <a
+	class="hover:grad bg-gradient-to-tr from-emerald-400 to-indigo-400 bg-clip-text font-bold text-transparent hover:from-rose-400 hover:to-indigo-400"
+	href="link.com"
+	>link</a
+  >
+  this is an image
+  <img src="/static/resources/How I Made This Site.png" alt="IMAGEEE" class="rounded-md" />
+  <a
+	class="hover:grad bg-gradient-to-tr from-emerald-400 to-indigo-400 bg-clip-text font-bold text-transparent hover:from-rose-400 hover:to-indigo-400"
+	href="mailto:rjabraouti@outlook.com"
+	class="email"
+	>rjabraouti@outlook.com</a
+  >
+</p>
