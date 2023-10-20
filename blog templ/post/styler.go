@@ -7,7 +7,7 @@ func StyleHTML(inputHTML []byte) []byte {
 	outputHTML := make([]byte, len(inputHTML))
 	copy(outputHTML, inputHTML)
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<p>`), []byte(`<p class="mb-4 text-justify text-xl text-neutral-200">`))
-	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<strong>`), []byte(`<strong class="text-rose-400">`))
+	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<strong>`), []byte(`<strong class="text-indigo-300">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<em>`), []byte(`<em class="text-indigo-300">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<ul>`), []byte(`<ul class="mb-4 list-disc pl-4 text-xl text-neutral-200">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<ol`), []byte(`<ol class="mb-4 list-decimal pl-4 text-xl text-neutral-200" `))

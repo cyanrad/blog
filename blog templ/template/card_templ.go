@@ -86,7 +86,7 @@ func Card(title string, tag string, date string, readingTime int) templ.Componen
 		if err != nil {
 			return err
 		}
-		var var_8 string = strconv.Itoa(readingTime) + "Minutes"
+		var var_8 string = strconv.Itoa(readingTime) + "  Minutes"
 		_, err = templBuffer.WriteString(templ.EscapeString(var_8))
 		if err != nil {
 			return err

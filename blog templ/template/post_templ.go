@@ -44,7 +44,7 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</script><div class=\"ml-32 mr-32 text-justify\"><h1 id=\"this-is\" class=\"mb-6 text-6xl font-semibold text-neutral-200\">")
+		_, err = templBuffer.WriteString("</script><a class=\"absolute left-8 top-8 w-16\" href=\"/\"><img src=\"/static/r-back-gradient.png\" alt=\"go back\" class=\"absolute\"><img src=\"/static/r-back.png\" alt=\"go back gradient\" class=\"absolute duration-300 hover:opacity-0\"></a><div class=\"ml-32 mr-32 text-justify\"><h1 id=\"this-is\" class=\"mb-6 text-6xl font-semibold text-neutral-200\">")
 		if err != nil {
 			return err
 		}
@@ -85,7 +85,7 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		var var_9 string = strconv.Itoa(readingTime) + " Minutes"
+		var var_9 string = strconv.Itoa(readingTime) + "  Minutes"
 		_, err = templBuffer.WriteString(templ.EscapeString(var_9))
 		if err != nil {
 			return err

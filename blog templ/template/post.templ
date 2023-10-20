@@ -14,12 +14,17 @@ templ Post(body templ.Component, title string, hook string, tag string, date str
       <script>
         hljs.highlightAll();
       </script>
+      
+      <a class="absolute left-8 top-8 w-16" href="/">
+          <img src="/static/r-back-gradient.png" alt="go back" class="absolute" />
+          <img src="/static/r-back.png"  alt="go back gradient" class="absolute duration-300 hover:opacity-0" />
+      </a>
 
       <div class="ml-32 mr-32 text-justify">
         <h1 id="this-is" class="mb-6 text-6xl font-semibold text-neutral-200">
             { title }
         </h1>
-        <p class="text-justify text-lg text-neutral-400">{ tag } &#x2022; { date } &#x2022; { strconv.Itoa(readingTime) + " Minutes" }</p> 
+        <p class="text-justify text-lg text-neutral-400">{ tag } &#x2022; { date } &#x2022; { strconv.Itoa(readingTime) + "  Minutes" }</p> 
         <br />
         <em class="text-justify text-2xl text-neutral-400">{ hook }</em>
       </div>

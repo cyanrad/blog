@@ -45,7 +45,10 @@ func main() {
 	http.HandleFunc("/post/", handlePost)
 	http.Handle("/", templ.Handler(body))
 
-	http.ListenAndServe(":3000", nil)
+	err = http.ListenAndServe(":3000", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func handlePost(w http.ResponseWriter, r *http.Request) {
