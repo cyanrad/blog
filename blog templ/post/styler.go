@@ -9,7 +9,7 @@ func StyleHTML(inputHTML []byte) []byte {
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<p>`), []byte(`<p class="mb-4 text-justify text-xl text-neutral-200">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<strong>`), []byte(`<strong class="text-indigo-300">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<em>`), []byte(`<em class="text-indigo-300">`))
-	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<ul>`), []byte(`<ul class="mb-4 list-disc pl-4 text-xl text-neutral-200">`))
+	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<ul class="incremental">`), []byte(`<ul class="mb-4 list-disc pl-4 text-xl text-neutral-200">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<ol`), []byte(`<ol class="mb-4 list-decimal pl-4 text-xl text-neutral-200" `))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<code>`), []byte(`<code class="rounded-md bg-zinc-700 p-1 font-mono text-lg text-emerald-300">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<h1`), []byte(`<h1 id="a-testing-file" class="mb-4 text-center text-4xl text-emerald-400" `))
