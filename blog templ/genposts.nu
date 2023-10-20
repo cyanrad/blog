@@ -1,1 +1,5 @@
-(ls posts).name | each {|f| pandoc -o $"static\\($f).html" $f}
+(ls -s static\markdown\).name | each {|f| 
+    let i = 'static\markdown\' + $f 
+    let o = 'static\posts\' + ($f | str replace '.md' '.html')
+    pandoc -i $i -o $o
+}
