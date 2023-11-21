@@ -33,11 +33,11 @@ func Card(title string, id string, tag string, date string, readingTime int) tem
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("\"><div class=\"group m-4 flex h-[30rem] w-96 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-indigo-500 hover:bg-neutral-900 hover:shadow-lg hover:shadow-indigo-900 hover:delay-100 hover:duration-300\"><div class=\"m-2 flex flex-col justify-end overflow-hidden rounded-md\"><img src=\"")
+		_, err = templBuffer.WriteString("\"><div class=\"group m-4 flex Topich-[30rem] w-96 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-indigo-500 hover:bg-neutral-900 hover:shadow-lg hover:shadow-indigo-900 hover:delay-100 hover:duration-300\"><div class=\"m-2 flex flex-col justify-end overflow-hidden rounded-md\"><img src=\"")
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString(templ.EscapeString("static/thumbnail/" + title + ".png"))
+		_, err = templBuffer.WriteString(templ.EscapeString("static/thumbnail/" + id + ".png"))
 		if err != nil {
 			return err
 		}

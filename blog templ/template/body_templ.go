@@ -9,7 +9,7 @@ import "context"
 import "io"
 import "bytes"
 
-func Body(cards templ.Component) templ.Component {
+func Body(cards []templ.Component) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 		templBuffer, templIsBuffer := w.(*bytes.Buffer)
 		if !templIsBuffer {
@@ -89,9 +89,11 @@ func Body(cards templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		err = cards.Render(ctx, templBuffer)
-		if err != nil {
-			return err
+		for _, card := range cards {
+			err = card.Render(ctx, templBuffer)
+			if err != nil {
+				return err
+			}
 		}
 		_, err = templBuffer.WriteString("</div><div class=\"h-32\"></div><footer class=\"bottom-0 w-full text-center\"><p class=\"text-sm text-neutral-400\">")
 		if err != nil {

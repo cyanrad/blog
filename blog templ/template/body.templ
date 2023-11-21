@@ -1,6 +1,6 @@
 package template
 
-templ Body(cards templ.Component) {
+templ Body(cards []templ.Component) {
 	<html lang="en">
 		<head>
 			<meta charset="utf-8"/>
@@ -24,7 +24,9 @@ templ Body(cards templ.Component) {
 			<div class="h-24"></div>
 
 			<div class="ml-24 mr-24 flex flex-wrap justify-center">
-				{! cards }
+                for _, card := range cards {
+                    {! card }
+                }
 			</div>
 
 			<div class="h-32"></div>

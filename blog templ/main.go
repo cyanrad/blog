@@ -25,19 +25,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-	relativeTime, err := post.GetRelativeDuration(POSTS[0].ReleaseDate)
-	if err != nil {
-		log.Fatal(err)
-	}
+	cards := generateCards()
+	body := template.Body(cards)
 
-	basicCard := template.Card(POSTS[0].Title,
-		POSTS[0].Id,
-		POSTS[0].Topic,
-		relativeTime,
-		post.GetReadingTime(POSTS[0].WordCount))
-
-	body := template.Body(basicCard)
-
+	// this is absolutely terrible but I'm fine with it now
 	http.Handle(
 		"/static/",
 		http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))),
@@ -49,6 +40,27 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func generateCards() []templ.Component {
+	cards := make([]templ.Component, len(POSTS))
+
+	for i, p := range POSTS {
+		relativeDuration, err := post.GetRelativeDuration(p.ReleaseDate)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		cards[i] = template.Card(
+			p.Title,
+			p.Id,
+			p.Topic,
+			relativeDuration,
+			post.GetReadingTime(p.WordCount),
+		)
+	}
+
+	return cards
 }
 
 // format: /post/%d
