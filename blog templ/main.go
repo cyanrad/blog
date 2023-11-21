@@ -7,9 +7,7 @@ import (
 	"main/post"
 	"main/template"
 	"net/http"
-	"net/url"
 	"os"
-	"path"
 	"strings"
 
 	"github.com/a-h/templ"
@@ -17,21 +15,23 @@ import (
 
 var POSTS []post.Post
 
+const POSTS_PATH = "./static/posts/"
+const POSTS_CONFIG_FILE = "posts.json"
+
 func main() {
-	// this should really be an env file
 	var err error
-	POSTS, err = post.LoadPostsData("posts.json")
+	POSTS, err = post.LoadPostsData(POSTS_CONFIG_FILE)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// idk why but i really hate how I'm organizing code right now
 	relativeTime, err := post.GetRelativeDuration(POSTS[0].ReleaseDate)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	basicCard := template.Card(POSTS[0].Title,
+		POSTS[0].Id,
 		POSTS[0].Topic,
 		relativeTime,
 		post.GetReadingTime(POSTS[0].WordCount))
@@ -51,34 +51,35 @@ func main() {
 	}
 }
 
+// format: /post/%d
 func handlePost(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "methods not implemented", http.StatusNotFound)
 		return
 	}
 
-	cleanedPath := path.Clean(r.URL.Path)
-	cleanedPath = cleanedPath[1:] // Remove the leading '/'
-	pathSegments := strings.Split(cleanedPath, "/")
+	pathSegments := strings.Split(r.URL.Path, "/")
 
-	// should probably check for .html at the end
-
-	filePath, err := url.PathUnescape(pathSegments[1])
-	if err != nil {
-		log.Println("failed to unescape url path")
-		w.WriteHeader(http.StatusInternalServerError)
-		return
+	// finding post
+	var postData post.Post
+	found := false
+	for _, p := range POSTS {
+		if p.Id == pathSegments[2] {
+			postData = p
+			found = true
+		}
 	}
-
-	postPath := "./static/posts/" + filePath
-	if containsDotDot(postPath) {
+	if !found {
 		http.Error(w, "invalid URL path", http.StatusBadRequest)
 		return
 	}
 
+	// reading post file context
+	postPath := POSTS_PATH + postData.Title + ".html"
 	f, err := os.Open(postPath)
 	if err != nil {
-		http.Error(w, "invalid URL path", http.StatusBadRequest)
+		log.Printf("post %s was found in posts config but not at %s\n", postData.Id, postPath)
+		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
@@ -89,24 +90,8 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// creating post page
 	styledHTML := post.StyleHTML(bytes)
-
-	// finding post
-	var postData post.Post
-	found := false
-	for _, p := range POSTS {
-		// removing the .html
-		if filePath[:len(filePath)-5] == p.Title {
-			postData = p
-			found = true
-		}
-	}
-	if !found {
-		// this should be an env file
-		log.Println("post was found in /static/posts file but was not found in posts config data")
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
 
 	relativeTime, err := post.GetRelativeDuration(postData.ReleaseDate)
 	if err != nil {
@@ -131,19 +116,3 @@ func Unsafe(html string) templ.Component {
 		return
 	})
 }
-
-// taken form the http standard package in fs.go
-func containsDotDot(v string) bool {
-	if !strings.Contains(v, "..") {
-		return false
-	}
-	for _, ent := range strings.FieldsFunc(v, isSlashRune) {
-		if ent == ".." {
-			return true
-		}
-	}
-	return false
-}
-
-// taken form the http standard package in fs.go
-func isSlashRune(r rune) bool { return r == '/' || r == '\\' }

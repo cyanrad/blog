@@ -11,7 +11,7 @@ import "bytes"
 
 import "strconv"
 
-func Card(title string, tag string, date string, readingTime int) templ.Component {
+func Card(title string, id string, tag string, date string, readingTime int) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 		templBuffer, templIsBuffer := w.(*bytes.Buffer)
 		if !templIsBuffer {
@@ -28,7 +28,7 @@ func Card(title string, tag string, date string, readingTime int) templ.Componen
 		if err != nil {
 			return err
 		}
-		var var_2 templ.SafeURL = templ.URL("post/" + title + ".html")
+		var var_2 templ.SafeURL = templ.URL("post/" + id)
 		_, err = templBuffer.WriteString(templ.EscapeString(string(var_2)))
 		if err != nil {
 			return err
