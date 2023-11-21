@@ -3,6 +3,9 @@ package post
 import "bytes"
 
 // This one of the most terrible functions I've ever wrote
+// I thought about making it a map then looping, but then I thought
+// ... why, this is probably faster...yeah I know I'm itrating over string
+// n times, but who cares
 func StyleHTML(inputHTML []byte) []byte {
 	outputHTML := make([]byte, len(inputHTML))
 	copy(outputHTML, inputHTML)

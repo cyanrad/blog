@@ -26,7 +26,7 @@ func main() {
 	}
 
 	// idk why but i really hate how I'm organizing code right now
-	relativeTime, err := post.GetRelativePastTime(POSTS[0].ReleaseDate)
+	relativeTime, err := post.GetRelativeDuration(POSTS[0].ReleaseDate)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -108,7 +108,7 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	relativeTime, err := post.GetRelativePastTime(postData.ReleaseDate)
+	relativeTime, err := post.GetRelativeDuration(postData.ReleaseDate)
 	if err != nil {
 		log.Fatal(err)
 	}

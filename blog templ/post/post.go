@@ -9,6 +9,7 @@ import (
 )
 
 type Post struct {
+	Id          string
 	Title       string
 	Hook        string
 	Topic       string
@@ -16,7 +17,7 @@ type Post struct {
 	WordCount   int
 }
 
-func DecodePostsJson(r io.Reader) ([]Post, error) {
+func decodePostsJson(r io.Reader) ([]Post, error) {
 	d := json.NewDecoder(r)
 
 	var posts []Post
@@ -35,11 +36,10 @@ func LoadPostsData(filePath string) ([]Post, error) {
 		return nil, fmt.Errorf("failed to open posts json: %w", err)
 	}
 
-	return DecodePostsJson(f)
+	return decodePostsJson(f)
 }
 
-// not a good name...can't think
-func GetRelativePastTime(date time.Time) (string, error) {
+func GetRelativeDuration(date time.Time) (string, error) {
 	today := time.Now()
 	if date.After(today) {
 		return "", fmt.Errorf("GetRelativePastTime: got date before today: %s", date.String())
@@ -48,16 +48,15 @@ func GetRelativePastTime(date time.Time) (string, error) {
 	duration := today.Sub(date)
 	days := int(duration.Hours() / 24)
 
-	// not sure if this should be a panic or an error
 	result := ""
 	if days < 0 {
-		panic("difference between today and previous day should never be 0")
+		panic("difference between today and previous day should never be less than 0")
 	}
 
 	// eh no one cares if we're a day or two off right??
 	if days <= 6 {
 		result = fmt.Sprintf("Uploaded %d Days Ago", days)
-	} else if days <= 31 {
+	} else if days <= 30 {
 		result = fmt.Sprintf("Uploaded %d Weeks Ago", days/7)
 	} else if days <= 365 {
 		result = fmt.Sprintf("Uploaded %d Months Ago", days/30)

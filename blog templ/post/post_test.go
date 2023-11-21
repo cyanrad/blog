@@ -11,6 +11,7 @@ import (
 func TestDecodePostsJson(t *testing.T) {
 	jsonString := `[
     {
+		"id": "1",
         "title": "How I Made This Site",
         "hook": "In short Golang, Templ, and RAW DOGGING HTML with the power of ZEUS",
         "topic": "web dev",
@@ -18,6 +19,7 @@ func TestDecodePostsJson(t *testing.T) {
         "wordCount": 500
     },
     {
+		"id": "2",
         "title": "My Internship Experience",
         "hook": "A pretty good one",
         "topic": "work",
@@ -29,6 +31,7 @@ func TestDecodePostsJson(t *testing.T) {
 
 	expected := []Post{
 		{
+			Id:          "1",
 			Title:       "How I Made This Site",
 			Hook:        "In short Golang, Templ, and RAW DOGGING HTML with the power of ZEUS",
 			Topic:       "web dev",
@@ -36,6 +39,7 @@ func TestDecodePostsJson(t *testing.T) {
 			WordCount:   500,
 		},
 		{
+			Id:          "2",
 			Title:       "My Internship Experience",
 			Hook:        "A pretty good one",
 			Topic:       "work",
