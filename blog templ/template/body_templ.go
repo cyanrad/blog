@@ -31,7 +31,7 @@ func Body(cards templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</title><link rel=\"stylesheet\" href=\"static/style.css\"></head><body class=\"flex flex-col bg-zinc-900\"><div class=\"h-24\"></div><h1 class=\"text-center font-serif text-6xl text-neutral-200\"><a href=\"\" class=\"bg-gradient-to-r from-emerald-400 to-indigo-500 bg-clip-text font-serif font-bold text-neutral-200 transition duration-200 hover:text-transparent hover:duration-200\">")
+		_, err = templBuffer.WriteString("</title><link rel=\"stylesheet\" href=\"static/style.css\"></head><body class=\"flex flex-col bg-zinc-900\"><div class=\"h-24\"></div><h1 class=\"group text-center font-serif text-6xl text-neutral-200\"><a href=\"\"><span class=\"bg-gradient-to-r from-emerald-400 to-indigo-500 bg-clip-text font-serif font-bold text-neutral-200 transition duration-200 group-hover:text-transparent group-hover:duration-200\">")
 		if err != nil {
 			return err
 		}
@@ -40,7 +40,7 @@ func Body(cards templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</a><span class=\"text-neutral-400\">")
+		_, err = templBuffer.WriteString("</span><span class=\"text-neutral-400\">")
 		if err != nil {
 			return err
 		}
@@ -85,7 +85,7 @@ func Body(cards templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</span></h1><div class=\"h-24\"></div><div class=\"ml-24 mr-24 flex flex-wrap justify-center\">")
+		_, err = templBuffer.WriteString("</span></a></h1><div class=\"h-24\"></div><div class=\"ml-24 mr-24 flex flex-wrap justify-center\">")
 		if err != nil {
 			return err
 		}

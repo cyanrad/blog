@@ -37,7 +37,7 @@ func Card(title string, tag string, date string, readingTime int) templ.Componen
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString(templ.EscapeString("static/resources/" + title + ".png"))
+		_, err = templBuffer.WriteString(templ.EscapeString("static/thumbnail/" + title + ".png"))
 		if err != nil {
 			return err
 		}
