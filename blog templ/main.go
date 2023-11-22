@@ -15,12 +15,14 @@ import (
 
 var POSTS []post.Post
 
-const POSTS_PATH = "./static/posts/"
-const POSTS_CONFIG_FILE = "posts.json"
+const CONTENT_PATH = "./content/"
+const POSTS_PATH = CONTENT_PATH + "posts/"
+const STATIC_PATH = CONTENT_PATH + "static/"
+const POSTS_CONFIG_PATH = "./posts.json"
 
 func main() {
 	var err error
-	POSTS, err = post.LoadPostsData(POSTS_CONFIG_FILE)
+	POSTS, err = post.LoadPostsData(POSTS_CONFIG_PATH)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -28,10 +30,9 @@ func main() {
 	cards := generateCards()
 	body := template.Body(cards)
 
-	// this is absolutely terrible but I'm fine with it now
 	http.Handle(
 		"/static/",
-		http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))),
+		http.StripPrefix("/static/", http.FileServer(http.Dir(STATIC_PATH))),
 	)
 	http.HandleFunc("/post/", handlePost)
 	http.Handle("/", templ.Handler(body))

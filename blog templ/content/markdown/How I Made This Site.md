@@ -36,6 +36,6 @@ func main() {
 this is a basic [link](link.com)
 
 this is an image
-![testing image](../resources/How I Made This Site.png)
+![testing image](/static/images/png.png)
 
 his is my email ;\) <rjabraouti@outlook.com>
