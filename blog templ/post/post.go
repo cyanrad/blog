@@ -2,6 +2,7 @@ package post
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -17,9 +18,63 @@ type Post struct {
 	WordCount   int
 }
 
+type DB struct {
+	Posts      []Post
+	ConfigPath string
+	PostsPath  string
+}
+
+func (db *DB) LoadPostsConfig() error {
+	f, err := os.Open(db.ConfigPath)
+	if err != nil {
+		return fmt.Errorf("failed to open posts config: %w", err)
+	}
+
+	posts, err := decodePostsJson(f)
+	if err != nil {
+		return fmt.Errorf("failed to decode posts config: %w", err)
+	}
+
+	db.Posts = posts
+	return nil
+}
+
+func (db *DB) GetPostContent(id string) ([]byte, error) {
+	post, ok := db.GetPostById(id)
+	if !ok {
+		return nil, fmt.Errorf("post id %s doesn't exist", id)
+	}
+
+	postPath := db.PostsPath + post.Title + ".html"
+	f, err := os.Open(postPath)
+	if err != nil {
+		return nil, errors.Join(fmt.Errorf("unexpected error: post %s was found in posts config but failed to open", id), err)
+	}
+
+	bytes, err := io.ReadAll(f)
+	if err != nil {
+		return nil, errors.Join(fmt.Errorf("unexpected error: reading existing post %s failed", id), err)
+	}
+
+	return bytes, nil
+}
+
+func (db *DB) GetPostById(id string) (Post, bool) {
+	var post Post
+	found := false
+
+	for _, p := range db.Posts {
+		if p.Id == id {
+			post = p
+			found = true
+		}
+	}
+
+	return post, found
+}
+
 func decodePostsJson(r io.Reader) ([]Post, error) {
 	d := json.NewDecoder(r)
-
 	var posts []Post
 
 	err := d.Decode(&posts)
@@ -28,47 +83,4 @@ func decodePostsJson(r io.Reader) ([]Post, error) {
 	}
 
 	return posts, nil
-}
-
-func LoadPostsData(filePath string) ([]Post, error) {
-	f, err := os.Open(filePath)
-	if err != nil {
-		return nil, fmt.Errorf("failed to open posts json: %w", err)
-	}
-
-	return decodePostsJson(f)
-}
-
-func GetRelativeDuration(date time.Time) (string, error) {
-	today := time.Now()
-	if date.After(today) {
-		return "", fmt.Errorf("GetRelativePastTime: got date before today: %s", date.String())
-	}
-
-	duration := today.Sub(date)
-	days := int(duration.Hours() / 24)
-
-	result := ""
-	if days < 0 {
-		panic("difference between today and previous day should never be less than 0")
-	}
-
-	// eh no one cares if we're a day or two off right??
-	if days <= 6 {
-		result = fmt.Sprintf("Uploaded %d Days Ago", days)
-	} else if days <= 30 {
-		result = fmt.Sprintf("Uploaded %d Weeks Ago", days/7)
-	} else if days <= 365 {
-		result = fmt.Sprintf("Uploaded %d Months Ago", days/30)
-	} else {
-		result = fmt.Sprintf("Uploaded %d Years Ago", days/365)
-	}
-
-	return result, nil
-}
-
-func GetReadingTime(wordCount int) int {
-	// not handling hours or seconds because I'm unlikely to ever write something this long
-	// 200 is slightly below the average reading time (source: google)
-	return wordCount / 200
 }
