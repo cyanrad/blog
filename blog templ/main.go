@@ -27,6 +27,7 @@ func main() {
 		Posts:      nil,
 		ConfigPath: POSTS_CONFIG_PATH,
 		PostsPath:  POSTS_PATH,
+		StaticPath: STATIC_PATH,
 	}
 	err = pdb.LoadPostsConfig()
 	if err != nil {
@@ -41,6 +42,7 @@ func main() {
 		"/static/",
 		http.StripPrefix("/static/", http.FileServer(http.Dir(STATIC_PATH))),
 	)
+	http.HandleFunc("/favicon.ico", h.handleFavicon)
 
 	// starting server
 	err = http.ListenAndServe(URL+":"+PORT, nil)

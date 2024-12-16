@@ -22,6 +22,7 @@ type DB struct {
 	Posts      []Post
 	ConfigPath string
 	PostsPath  string
+	StaticPath string
 }
 
 func (db *DB) LoadPostsConfig() error {

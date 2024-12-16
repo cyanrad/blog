@@ -4,5 +4,8 @@ run:
 
 posts:
 	nu genposts.nu
+	
+format:
+	templ fmt .
 
 .PHONY: posts run

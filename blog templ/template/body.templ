@@ -1,41 +1,44 @@
 package template
 
 templ Body(cards []templ.Component) {
-	<html lang="en">
-		<head>
-			<meta charset="utf-8"/>
-			<title>Radwan's Awesome Blog</title>
-			<link rel="stylesheet" href="static/style.css"/>
-		</head>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8" />
+    <title>Radwan's Awesome Blog</title>
+    <link rel="stylesheet" href="static/style.css" />
+</head>
 
-		<body class="flex flex-col bg-zinc-900">
-			<div class="h-24"></div>
-			<h1 class="group text-center font-serif text-6xl text-neutral-200">
-                <a href="" >
-                    <span class="bg-gradient-to-r from-emerald-400 to-indigo-500 bg-clip-text font-serif font-bold text-neutral-200 transition duration-200 group-hover:text-transparent group-hover:duration-200">Radwan</span>
-                    <span class="text-neutral-400">.</span>
-                    <span class="text-indigo-500">Is</span>
-                    <span class="text-neutral-400">(</span>
-                    <em class="text-emerald-400">"writing about computer"</em>
-                    <span class="text-neutral-400">)</span>
-                </a>
-            </h1>
-			<div class="h-24"></div>
+<body class="flex flex-col bg-zinc-900">
+    <div class="h-24"></div>
 
-			<div class="ml-24 mr-24 flex flex-wrap justify-center">
-                for _, card := range cards {
-                    {! card }
-                }
-			</div>
+    <h1 class="group text-center font-serif lg:text-6xl text-7xl text-neutral-200">
+        <a href="">
+            <span class="bg-gradient-to-r from-emerald-400 to-indigo-500 bg-clip-text font-bold text-neutral-200 transition duration-200 group-hover:text-transparent group-hover:duration-200">
+                Radwan
+            </span>
+            <span class="text-neutral-400">.</span>
+            <span class="text-indigo-500">Is</span>
+            <span class="text-neutral-400">(</span>
+            <em class="text-emerald-400">"writing about computers"</em>
+            <span class="text-neutral-400">)</span>
+        </a>
+    </h1>
+    <div class="h-24"></div>
 
-			<div class="h-32"></div>
-			<footer class="bottom-0 w-full text-center">
-				<p class="text-sm text-neutral-400">author: literally the header</p>
-				<p class="text-sm text-neutral-400"><a href="mailto:rjabraouti@outlook.com">rjabraouti@outlook.com</a></p>
-				<p class="text-sm text-neutral-400">built with: love, friendship, and cupcakes </p>
-			</footer>
-		</body>
-	</html>
+    <div class="ml-24 mr-24  flex flex-wrap justify-center">
+        for _, card := range cards {
+            {! card }
+        }
+    </div>
+    <div class="h-32"></div>
+
+    <footer class="bottom-0 w-full text-center">
+        <p class="text-sm text-neutral-400">author: literally the header</p>
+        <p class="text-sm text-neutral-400"><a href="mailto:rjabraouti@outlook.com">rjabraouti@outlook.com</a></p>
+        <p class="text-sm text-neutral-400">built with: love, friendship, and cupcakes </p>
+    </footer>
+</body>
+
+</html>
 }
-

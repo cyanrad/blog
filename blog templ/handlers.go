@@ -50,6 +50,10 @@ func (h *Handler) handlePost(w http.ResponseWriter, r *http.Request) {
 	post.Render(r.Context(), w)
 }
 
+func (h *Handler) handleFavicon(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, h.pdb.StaticPath+"favicon.ico")
+}
+
 func Unsafe(html string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
 		_, err = io.WriteString(w, html)

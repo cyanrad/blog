@@ -38,8 +38,8 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 			return err
 		}
 		var_3 := `
-        hljs.highlightAll();
-      `
+            hljs.highlightAll();
+        `
 		_, err = templBuffer.WriteString(var_3)
 		if err != nil {
 			return err
@@ -62,10 +62,6 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString(" ")
-		if err != nil {
-			return err
-		}
 		var_6 := `&#x2022; `
 		_, err = templBuffer.WriteString(var_6)
 		if err != nil {
@@ -73,10 +69,6 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		}
 		var var_7 string = date
 		_, err = templBuffer.WriteString(templ.EscapeString(var_7))
-		if err != nil {
-			return err
-		}
-		_, err = templBuffer.WriteString(" ")
 		if err != nil {
 			return err
 		}

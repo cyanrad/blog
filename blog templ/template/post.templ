@@ -3,38 +3,29 @@ package template
 import "strconv"
 
 templ Post(body templ.Component, title string, hook string, tag string, date string, readingTime int) {
-    <head>
-        <link rel="stylesheet" href="/static/style.css" />
-        <link rel="stylesheet" href="/static/atom-one-dark-reasonable.min.css" />
-        <script src="/static/highlight.min.js"></script>
-    </head>
-
-    <body
-      class="ml-[30rem] mr-[30rem] mt-24 flex flex-col justify-center bg-zinc-900 font-serif">
-      <script>
-        hljs.highlightAll();
-      </script>
-      
-      <a class="absolute left-8 top-8 w-16" href="/">
-          <img src="/static/r-back-gradient.png" alt="go back" class="absolute" />
-          <img src="/static/r-back.png"  alt="go back gradient" class="absolute duration-300 hover:opacity-0" />
-      </a>
-
-      <div class="ml-32 mr-32 text-justify">
-        <h1 id="this-is" class="mb-6 text-6xl font-semibold text-neutral-200">
-            { title }
-        </h1>
-        <p class="text-justify text-lg text-neutral-400">{ tag } &#x2022; { date } &#x2022; { strconv.Itoa(readingTime) + "  Minutes" }</p> 
-        <br />
-        <em class="text-justify text-2xl text-neutral-400">{ hook }</em>
-      </div>
-
-      <hr class="mb-12 opacity-50" />
-
-      <div class="ml-32 mr-32">
-        {! body }
-      </div>
-    </body>
-
+	<head>
+		<link rel="stylesheet" href="/static/style.css"/>
+		<link rel="stylesheet" href="/static/atom-one-dark-reasonable.min.css"/>
+		<script src="/static/highlight.min.js"></script>
+	</head>
+	<body class="ml-[30rem] mr-[30rem] mt-24 flex flex-col justify-center bg-zinc-900 font-serif">
+		<script>
+            hljs.highlightAll();
+        </script>
+		<a class="absolute left-8 top-8 w-16" href="/">
+            <img src="/static/r-back-gradient.png" alt="go back" class="absolute"/>
+            <img src="/static/r-back.png" alt="go back gradient" class="absolute duration-300 hover:opacity-0"/>
+        </a>
+		<div class="ml-32 mr-32 text-justify">
+			<h1 id="this-is" class="mb-6 text-6xl font-semibold text-neutral-200">{ title }</h1>
+			<p class="text-justify text-lg text-neutral-400">{ tag }&#x2022; { date }&#x2022; { strconv.Itoa(readingTime) + "  Minutes" }</p>
+			<br/>
+			<em class="text-justify text-2xl text-neutral-400">{ hook }</em>
+		</div>
+		<hr class="mb-12 opacity-50"/>
+		<div class="ml-32 mr-32">
+			{! body }
+		</div>
+	</body>
 }
 
