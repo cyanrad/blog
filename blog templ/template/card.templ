@@ -4,13 +4,13 @@ import "strconv"
 
 templ Card(title string, id string, tag string, date string, readingTime int) {
 <a href={ templ.URL("post/" + id) }>
-    <div class="group m-4 flex Topich-[30rem] w-96 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-indigo-500 hover:bg-neutral-900 hover:shadow-lg hover:shadow-indigo-900 hover:delay-100 hover:duration-300">
+    <div class="group m-4 flex w-72 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-indigo-500 hover:bg-neutral-900 hover:shadow-lg hover:shadow-indigo-900 hover:delay-100 hover:duration-300 min-[380px]:w-80 min-[520px]:w-96">
         <div class="m-2 flex flex-col justify-end overflow-hidden rounded-md">
             <img src={ "static/thumbnail/" + id + ".png" } class="mb-3 w-full rounded-md" />
             <em class="mb-3 font-serif text-2xl text-neutral-200 duration-200 hover:delay-100 group-hover:text-slate-300">
                 { title }
             </em>
-            <p class="font-serif text-sm text-neutral-400 duration-200 hover:delay-100 group-hover:text-slate-400">
+            <p class="font-serif text-xs sm:text-sm text-neutral-400 duration-200 hover:delay-100 group-hover:text-slate-400">
                 { tag } &#x2022; { date } &#x2022; <span class="text-emerald-400">{ strconv.Itoa(readingTime) + " Minutes" }</span>
             </p>
         </div>

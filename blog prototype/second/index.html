@@ -3,26 +3,65 @@
     <meta charset="utf-8" />
     <title>Awsome Blog</title>
     <link rel="stylesheet" href=".\style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
   <body class="flex flex-col bg-zinc-900">
     <!-- heading segment -->
-    <div class="h-24"></div>
+    <div class="h-12 md:h-24"></div>
     <h1
-      class="group ml-6 mr-6 text-center font-serif text-7xl text-neutral-200">
+      class="group ml-6 mr-6 text-center font-serif text-4xl text-neutral-200 sm:text-5xl md:text-6xl">
       <a href="">
         <span
-          class="bg-gradient-to-r from-emerald-400 to-indigo-500 bg-clip-text font-bold text-neutral-200 transition duration-200 group-hover:text-transparent group-hover:duration-200"
+          class="bg-clip-text font-bold text-neutral-200 transition duration-200 group-hover:text-emerald-400 group-hover:duration-200 md:bg-gradient-to-r md:from-emerald-400 md:to-indigo-500 md:group-hover:text-transparent"
           >Radwan</span
         >
         <span class="text-neutral-400">.</span>
-        <span class="text-indigo-500">Is</span>
+        <span class="text-indigo-500">Write</span>
         <span class="text-neutral-400">(</span>
-        <em class="text-emerald-400">"writing about computer"</em>
+        <em class="mr-0.5 text-emerald-400">"about computers"</em>
         <span class="text-neutral-400">)</span>
       </a>
     </h1>
-    <div class="h-24"></div>
+    <div class="h-12 md:h-24"></div>
     <!-- / heading segment -->
+
+    <div class="ml-12 mr-12 flex flex-wrap justify-center lg:ml-24 lg:mr-24">
+      <a href="./1.html">
+        <div
+          class="group m-4 flex w-72 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-indigo-500 hover:bg-neutral-900 hover:shadow-lg hover:shadow-indigo-900 hover:delay-100 hover:duration-300 min-[380px]:w-80 min-[520px]:w-96">
+          <div class="m-2 flex flex-col justify-end overflow-hidden rounded-md">
+            <img src="bg.png" class="mb-3 w-full rounded-md" />
+            <em
+              class="mb-3 font-serif text-2xl text-neutral-200 duration-200 hover:delay-100 group-hover:text-slate-300">
+              My internsip experience at the Emirates
+            </em>
+            <p
+              class="font-serif text-xs text-neutral-400 duration-200 hover:delay-100 group-hover:text-slate-400 sm:text-sm">
+              DevOps &#x2022; 4 Months Ago &#x2022;
+              <span class="text-emerald-400">10 Minutes</span>
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="/123">
+        <div
+          class="group m-4 flex w-72 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-indigo-500 hover:bg-neutral-900 hover:shadow-lg hover:shadow-indigo-900 hover:delay-100 hover:duration-300 min-[380px]:w-80 min-[520px]:w-96">
+          <div class="m-2 flex flex-col justify-end overflow-hidden rounded-md">
+            <img src="bg.png" class="mb-3 w-full rounded-md" />
+            <em
+              class="mb-3 font-serif text-2xl text-neutral-200 duration-200 hover:delay-100 group-hover:text-slate-300">
+              My internsip experience at the Emirates
+            </em>
+            <p
+              class="font-serif text-sm text-neutral-400 duration-200 hover:delay-100 group-hover:text-slate-400">
+              DevOps &#x2022; 4 Months Ago &#x2022;
+              <span class="text-emerald-400">10 Minutes</span>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- / cards segment -->
   </body>
 </html>

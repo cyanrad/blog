@@ -7,26 +7,27 @@ templ Body(cards []templ.Component) {
     <meta charset="utf-8" />
     <title>Radwan's Awesome Blog</title>
     <link rel="stylesheet" href="static/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body class="flex flex-col bg-zinc-900">
-    <div class="h-24"></div>
+    <div class="h-12 md:h-24"></div>
 
-    <h1 class="group text-center font-serif lg:text-6xl text-7xl text-neutral-200">
+    <h1 class="group ml-6 mr-6 text-center font-serif text-3xl min-[380px]:text-4xl text-neutral-200 sm:text-5xl md:text-6xl">
         <a href="">
             <span class="bg-gradient-to-r from-emerald-400 to-indigo-500 bg-clip-text font-bold text-neutral-200 transition duration-200 group-hover:text-transparent group-hover:duration-200">
                 Radwan
             </span>
-            <span class="text-neutral-400">.</span>
-            <span class="text-indigo-500">Is</span>
+            <span class="ml-0.5 -mr-1 text-neutral-400">.</span>
+            <span class="text-indigo-500">Write</span>
             <span class="text-neutral-400">(</span>
-            <em class="text-emerald-400">"writing about computers"</em>
-            <span class="text-neutral-400">)</span>
+            <em class="text-emerald-400">"about computers"</em>
+            <span class="ml-2 text-neutral-400">)</span>
         </a>
     </h1>
-    <div class="h-24"></div>
+    <div class="h-12 md:h-24"></div>
 
-    <div class="ml-24 mr-24  flex flex-wrap justify-center">
+    <div class="ml-12 mr-12 flex flex-wrap justify-center lg:ml-24 lg:mr-24">
         for _, card := range cards {
             {! card }
         }

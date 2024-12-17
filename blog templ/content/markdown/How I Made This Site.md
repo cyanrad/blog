@@ -29,7 +29,7 @@ package main
 import fmt
 
 func main() {
-    fmt.Println(":)")
+    fmt.Println(":)laksjdf;lajsdl;kfjas;dlfj;lasjf;lasdjf;laksjf;aljsf;lkjas;flajl;jdsf;lsjfl;")
 }
 ```
 

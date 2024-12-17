@@ -33,7 +33,7 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</script></head><body class=\"ml-[30rem] mr-[30rem] mt-24 flex flex-col justify-center bg-zinc-900 font-serif\"><script>")
+		_, err = templBuffer.WriteString("</script><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"></head><body class=\"mt-24 flex justify-center bg-zinc-900 font-serif\"><script>")
 		if err != nil {
 			return err
 		}
@@ -44,7 +44,7 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</script><a class=\"absolute left-8 top-8 w-16\" href=\"/\"><img src=\"/static/r-back-gradient.png\" alt=\"go back\" class=\"absolute\"><img src=\"/static/r-back.png\" alt=\"go back gradient\" class=\"absolute duration-300 hover:opacity-0\"></a><div class=\"ml-32 mr-32 text-justify\"><h1 id=\"this-is\" class=\"mb-6 text-6xl font-semibold text-neutral-200\">")
+		_, err = templBuffer.WriteString("</script><a class=\"absolute left-8 top-8 w-16\" href=\"/\"><img src=\"/static/r-back-gradient.png\" alt=\"go back\" class=\"absolute\"><img src=\"/static/r-back.png\" alt=\"go back gradient\" class=\"absolute duration-300 hover:opacity-0\"></a><div class=\"mt-12 w-[64rem] pl-8 pr-8 sm:pl-16 sm:pr-16 sm:text-justify md:mt-0 md:pl-32 md:pr-32\"><h1 class=\"mb-6 text-5xl font-semibold text-neutral-200 sm:text-6xl\">")
 		if err != nil {
 			return err
 		}
@@ -53,7 +53,7 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</h1><p class=\"text-justify text-lg text-neutral-400\">")
+		_, err = templBuffer.WriteString("</h1><p class=\"text-md text-neutral-400 sm:text-justify sm:text-lg\">")
 		if err != nil {
 			return err
 		}
@@ -82,7 +82,7 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</p><br><em class=\"text-justify text-2xl text-neutral-400\">")
+		_, err = templBuffer.WriteString("</p><br><em class=\"text-justify text-xl text-neutral-400 sm:text-2xl\">")
 		if err != nil {
 			return err
 		}
@@ -91,7 +91,7 @@ func Post(body templ.Component, title string, hook string, tag string, date stri
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</em></div><hr class=\"mb-12 opacity-50\"><div class=\"ml-32 mr-32\">")
+		_, err = templBuffer.WriteString("</em><hr class=\"mb-12 opacity-50\">")
 		if err != nil {
 			return err
 		}

@@ -1,4 +1,5 @@
-run:	
+run:
+	make tailwind
 	templ generate -path "template"
 	go run .
 
@@ -7,5 +8,8 @@ posts:
 	
 format:
 	templ fmt .
+	
+tailwind:
+	tailwind -i tailwind.css -o ./content/static/style.css
 
 .PHONY: posts run

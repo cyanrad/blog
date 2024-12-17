@@ -33,7 +33,7 @@ func Card(title string, id string, tag string, date string, readingTime int) tem
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("\"><div class=\"group m-4 flex Topich-[30rem] w-96 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-indigo-500 hover:bg-neutral-900 hover:shadow-lg hover:shadow-indigo-900 hover:delay-100 hover:duration-300\"><div class=\"m-2 flex flex-col justify-end overflow-hidden rounded-md\"><img src=\"")
+		_, err = templBuffer.WriteString("\"><div class=\"group m-4 flex w-72 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:border-indigo-500 hover:bg-neutral-900 hover:shadow-lg hover:shadow-indigo-900 hover:delay-100 hover:duration-300 min-[380px]:w-80 min-[520px]:w-96\"><div class=\"m-2 flex flex-col justify-end overflow-hidden rounded-md\"><img src=\"")
 		if err != nil {
 			return err
 		}
@@ -50,7 +50,7 @@ func Card(title string, id string, tag string, date string, readingTime int) tem
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</em><p class=\"font-serif text-sm text-neutral-400 duration-200 hover:delay-100 group-hover:text-slate-400\">")
+		_, err = templBuffer.WriteString("</em><p class=\"font-serif text-xs sm:text-sm text-neutral-400 duration-200 hover:delay-100 group-hover:text-slate-400\">")
 		if err != nil {
 			return err
 		}

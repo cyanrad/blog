@@ -31,7 +31,7 @@ func Body(cards []templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</title><link rel=\"stylesheet\" href=\"static/style.css\"></head><body class=\"flex flex-col bg-zinc-900\"><div class=\"h-24\"></div><h1 class=\"group text-center font-serif lg:text-6xl text-7xl text-neutral-200\"><a href=\"\"><span class=\"bg-gradient-to-r from-emerald-400 to-indigo-500 bg-clip-text font-bold text-neutral-200 transition duration-200 group-hover:text-transparent group-hover:duration-200\">")
+		_, err = templBuffer.WriteString("</title><link rel=\"stylesheet\" href=\"static/style.css\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"></head><body class=\"flex flex-col bg-zinc-900\"><div class=\"h-12 md:h-24\"></div><h1 class=\"group ml-6 mr-6 text-center font-serif text-3xl min-[380px]:text-4xl text-neutral-200 sm:text-5xl md:text-6xl\"><a href=\"\"><span class=\"bg-gradient-to-r from-emerald-400 to-indigo-500 bg-clip-text font-bold text-neutral-200 transition duration-200 group-hover:text-transparent group-hover:duration-200\">")
 		if err != nil {
 			return err
 		}
@@ -40,7 +40,7 @@ func Body(cards []templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</span><span class=\"text-neutral-400\">")
+		_, err = templBuffer.WriteString("</span><span class=\"ml-0.5 -mr-1 text-neutral-400\">")
 		if err != nil {
 			return err
 		}
@@ -53,7 +53,7 @@ func Body(cards []templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		var_5 := `Is`
+		var_5 := `Write`
 		_, err = templBuffer.WriteString(var_5)
 		if err != nil {
 			return err
@@ -71,12 +71,12 @@ func Body(cards []templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		var_7 := `"writing about computers"`
+		var_7 := `"about computers"`
 		_, err = templBuffer.WriteString(var_7)
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</em><span class=\"text-neutral-400\">")
+		_, err = templBuffer.WriteString("</em><span class=\"ml-2 text-neutral-400\">")
 		if err != nil {
 			return err
 		}
@@ -85,7 +85,7 @@ func Body(cards []templ.Component) templ.Component {
 		if err != nil {
 			return err
 		}
-		_, err = templBuffer.WriteString("</span></a></h1><div class=\"h-24\"></div><div class=\"ml-24 mr-24  flex flex-wrap justify-center\">")
+		_, err = templBuffer.WriteString("</span></a></h1><div class=\"h-12 md:h-24\"></div><div class=\"ml-12 mr-12 flex flex-wrap justify-center lg:ml-24 lg:mr-24\">")
 		if err != nil {
 			return err
 		}
