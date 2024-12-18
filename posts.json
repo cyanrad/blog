@@ -6,13 +6,5 @@
         "topic": "Web-Dev",
         "releaseDate": "2023-10-18T00:00:00Z",
         "wordCount": 500
-    },
-    {
-        "id": "2",
-        "title": "My Internship Experience",
-        "hook": "A pretty good one",
-        "topic": "Work",
-        "releaseDate": "2023-10-14T00:00:00Z",
-        "wordCount": 1000
     }
 ]

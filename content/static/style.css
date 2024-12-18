@@ -795,11 +795,6 @@ video {
   line-height: 2.25rem;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
@@ -896,22 +891,6 @@ video {
 
 .duration-300 {
   transition-duration: 300ms;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-  /* For Chrome, Safari, and Opera */
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  /* For Internet Explorer and Edge */
-  scrollbar-width: none;
-  /* For Firefox */
-}
-
-.scrollbar-default::-webkit-scrollbar {
-  display: block;
 }
 
 .hover\:-translate-y-1:hover {
