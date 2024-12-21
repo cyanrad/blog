@@ -7,26 +7,23 @@ templ Post(body templ.Component, title string, hook string, tag string, date str
 		<link rel="stylesheet" href="/static/style.css"/>
 		<link rel="stylesheet" href="/static/atom-one-dark-reasonable.min.css"/>
 		<script src="/static/highlight.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
-    <body class="mt-24 flex justify-center bg-zinc-900 font-serif">
+	<body class="mt-24 flex justify-center bg-zinc-900 font-serif">
 		<script>
             hljs.highlightAll();
         </script>
 		<a class="absolute left-8 top-8 w-16" href="/">
-            <img src="/static/r-back-gradient.png" alt="go back" class="absolute"/>
-            <img src="/static/r-back.png" alt="go back gradient" class="absolute duration-300 hover:opacity-0"/>
-        </a>
-        <div class="mt-12 w-[64rem] pl-8 pr-8 sm:pl-16 sm:pr-16 sm:text-justify md:mt-0 md:pl-32 md:pr-32">
+			<img src="/static/r-back-gradient.png" alt="go back" class="absolute"/>
+			<img src="/static/r-back.png" alt="go back gradient" class="absolute duration-300 hover:opacity-0"/>
+		</a>
+		<div class="mt-12 w-[64rem] pl-8 pr-8 sm:pl-16 sm:pr-16 sm:text-justify md:mt-0 md:pl-32 md:pr-32">
 			<h1 class="mb-6 text-5xl font-semibold text-neutral-200 sm:text-6xl">{ title }</h1>
 			<p class="text-md text-neutral-400 sm:text-justify sm:text-lg">{ tag }&#x2022; { date }&#x2022; { strconv.Itoa(readingTime) + "  Minutes" }</p>
 			<br/>
 			<em class="text-justify text-xl text-neutral-400 sm:text-2xl">{ hook }</em>
-
-		    <hr class="mb-12 opacity-50"/>
-
-			{! body }
+			<hr class="mb-12 opacity-50"/>
+			@body
 		</div>
 	</body>
 }
-
