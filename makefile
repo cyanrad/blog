@@ -11,9 +11,12 @@ build-win:
 	templ generate -path "template"
 	go build -o blog main.go
 
-build-docker:
-	-docker image rm blog:latest
-	docker build -t blog . 
+docker-up:
+	docker compose build
+	docker compose up
+
+docker-down:
+	docker compose down
 
 ####################################### LINUX/PROD #######################################
 build: 

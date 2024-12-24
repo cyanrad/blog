@@ -19,7 +19,7 @@ templ Post(body templ.Component, title string, hook string, tag string, date str
 		</a>
 		<div class="mt-12 w-[64rem] pl-8 pr-8 sm:pl-16 sm:pr-16 sm:text-justify md:mt-0 md:pl-32 md:pr-32">
 			<h1 class="mb-6 text-5xl font-semibold text-neutral-200 sm:text-6xl">{ title }</h1>
-			<p class="text-md text-neutral-400 sm:text-justify sm:text-lg">{ tag }&#x2022; { date }&#x2022; { strconv.Itoa(readingTime) + "  Minutes" }</p>
+			<p class="text-md text-neutral-400 sm:text-justify sm:text-lg">{ tag } &#x2022; { date } &#x2022; { strconv.Itoa(readingTime) + "  Minutes" }</p>
 			<br/>
 			<em class="text-justify text-xl text-neutral-400 sm:text-2xl">{ hook }</em>
 			<hr class="mb-12 opacity-50"/>
