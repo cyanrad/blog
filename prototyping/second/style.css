@@ -874,6 +874,22 @@ video {
   transition-duration: 300ms;
 }
 
+.marker\:text-indigo-300 *::marker {
+  color: rgb(165 180 252 );
+}
+
+.marker\:text-indigo-400 *::marker {
+  color: rgb(129 140 248 );
+}
+
+.marker\:text-indigo-300::marker {
+  color: rgb(165 180 252 );
+}
+
+.marker\:text-indigo-400::marker {
+  color: rgb(129 140 248 );
+}
+
 .hover\:-translate-y-1:hover {
   --tw-translate-y: -0.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));

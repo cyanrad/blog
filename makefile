@@ -11,6 +11,10 @@ build-win:
 	templ generate -path "template"
 	go build -o blog main.go
 
+build-docker:
+	-docker image rm blog:latest
+	docker build -t blog . 
+
 ####################################### LINUX/PROD #######################################
 build: 
 	./deps/tailwind -i tailwind.css -o ./content/static/style.css
