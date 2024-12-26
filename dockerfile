@@ -17,5 +17,5 @@ COPY --from=builder /app/content ./content
 COPY .env .
 COPY posts.json .
 
-EXPOSE 8080
 ENTRYPOINT [ "/app/blog" ]
+EXPOSE 80
