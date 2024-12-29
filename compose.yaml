@@ -1,6 +1,14 @@
 version: '3'
 name: blog
 services:
+  watchtower:
+    image: containrrr/watchtower
+    command: 
+      - "--label-enable"
+      - "--interval"
+      - "30"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   reverse-proxy:
     image: traefik:v3.2
     command: 
@@ -21,12 +29,13 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - letsencrypt:/letsencrypt
   blog:
-    image: "ghcr.io/cyanrad/blog:latest"
+    image: "ghcr.io/cyanrad/blog:prod"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.blog.rule=Host(`radwan.blog`)"
       - "traefik.http.routers.blog.entrypoints=websecure"
       - "traefik.http.routers.blog.tls.certresolver=myresolver"
+      - "com.centurylinklabs.watchtower.enable=true"
     command: [ "/app/blog" ]
 volumes:
   letsencrypt:
