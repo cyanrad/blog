@@ -2,39 +2,31 @@ version: '3'
 name: blog
 services:
   reverse-proxy:
-    # The official v3 Traefik docker image
     image: traefik:v3.2
-    # Enables the web UI and tells Traefik to listen to docker
     command: 
     - "--api.insecure=true"
     - "--providers.docker"
     - "--providers.docker.exposedbydefault=false"
-    # enable when in production
-    # - "--entrypoints.websecure.address=:443"
-    # - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-    # - "--certificatesresolvers.myresolver.acme.email=rjabraouti@outlook.com"
-    # - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-    # - "--entrypoints.web.address=:80"
-    # - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
-    # - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+    - "--entrypoints.websecure.address=:443"
+    - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+    - "--certificatesresolvers.myresolver.acme.email=rjabraouti@outlook.com"
+    - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    - "--entrypoints.web.address=:80"
+    - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+    - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
     ports:
-      - "3000:80"
-      # - "443:443"
-      # The Web UI (enabled by --api.insecure=true)
-      - "8080:8080"
+      - "80:80"
+      - "443:443"
     volumes:
-      # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
       - letsencrypt:/letsencrypt
   blog:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: "ghcr.io/cyanrad/blog:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.blog.rule=Host(`localhost`)"
-      # - "traefik.http.routers.blog.entrypoints=websecure"
-      # - "traefik.http.routers.blog.tls.certresolver=myresolver"
+      - "traefik.http.routers.blog.rule=Host(`radwan.blog`)"
+      - "traefik.http.routers.blog.entrypoints=websecure"
+      - "traefik.http.routers.blog.tls.certresolver=myresolver"
     command: [ "/app/blog" ]
 volumes:
   letsencrypt:
