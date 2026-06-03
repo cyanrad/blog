@@ -18,8 +18,8 @@
 
   var COLOR = "#34d399"; // emerald-400, matches the surrounding text
   var FONT = 'italic %FONTPX%px Georgia, Cambria, "Times New Roman", serif';
-  var HOLD = 1800; // ms a word stays crisp
-  var MORPH = 1100; // ms for the full pixelate -> reform transition
+  var HOLD = 2500; // ms a word stays crisp
+  var MORPH = 1500; // ms for the full pixelate -> reform transition
   var RAMP = 0.3; // each char's ramp length, as a fraction of the morph (0..0.5)
   // window (in morph progress) over which the canvas width animates old -> new
   var RESIZE_LO = 0.45;
