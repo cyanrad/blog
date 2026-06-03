@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* pixel-dissolve cycling class */
+.word-cycle {
+    display: inline-block;
+    vertical-align: -0.18em;
+}
