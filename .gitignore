@@ -4,3 +4,4 @@ deps
 blog
 blog.exe
 template/*_templ.go
+style.css

@@ -18,7 +18,7 @@ templ Body(cards []templ.Component) {
 					<span class="-ml-1.5 -mr-3 sm:-ml-2 sm:-mr-5 text-neutral-400">.</span>
 					<span class="text-indigo-500 -mr-1.5 sm:-mr-3">Write</span>
 					<span class="text-neutral-400 -mr-1.5 sm:-mr-3">(</span>
-					<em class="text-emerald-400 -mr-1 sm:-mr-2">"about computers"</em>
+					<em class="text-emerald-400 -mr-1 sm:-mr-2">"about <canvas id="word-cycle" class="word-cycle" data-words="computers, data, compilers"></canvas>"</em>
 					<span class="text-neutral-400">)</span>
 				</a>
 			</h1>
@@ -33,12 +33,13 @@ templ Body(cards []templ.Component) {
 				<p class="text-sm text-neutral-400">author: literally the header</p>
 				<p class="text-sm text-neutral-400"><a href="mailto:rjabraouti@outlook.com">rjabraouti@outlook.com</a></p>
 				<p class="text-sm text-neutral-400">
-					built with: 
+					built with:
 					<a class="hover:grad bg-gradient-to-tr from-emerald-400 to-indigo-400 bg-clip-text text-transparent hover:from-rose-400 hover:to-indigo-400" href="https://github.com/cyanrad/blog" target="_blank">
 						love, friendship, and cupcakes
 					</a>
 				</p>
 			</footer>
+			<script src="static/word-cycle.js"></script>
 		</body>
 	</html>
 }
