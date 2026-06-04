@@ -1,10 +1,10 @@
 (function () {
   // getting the canvas in the title and closing if it did not render
-  var canvas = document.getElementById("word-cycle");
+  const canvas = document.getElementById("word-cycle");
   if (!canvas || !canvas.getContext) return;
 
   // single source of truth: the words come from the canvas's data-words attr
-  var WORDS = (canvas.dataset.words || "")
+  const WORDS = (canvas.dataset.words || "")
     .split(",")
     .map(function (w) {
       return w.trim();
@@ -16,41 +16,41 @@
   canvas.setAttribute("role", "img");
   canvas.setAttribute("aria-label", WORDS.join(", "));
 
-  var COLOR = "#34d399"; // emerald-400, matches the surrounding text
-  var FONT = 'italic %FONTPX%px Georgia, Cambria, "Times New Roman", serif';
-  var HOLD = 2500; // ms a word stays crisp
-  var MORPH = 1500; // ms for the full pixelate -> reform transition
-  var RAMP = 0.3; // each char's ramp length, as a fraction of the morph (0..0.5)
+  const COLOR = "#34d399"; // emerald-400, matches the surrounding text
+  const FONT = 'italic %FONTPX%px Georgia, Cambria, "Times New Roman", serif';
+  const HOLD = 2500; // ms a word stays crisp
+  const MORPH = 1500; // ms for the full pixelate -> reform transition
+  const RAMP = 0.3; // each char's ramp length, as a fraction of the morph (0..0.5)
   // window (in morph progress) over which the canvas width animates old -> new
-  var RESIZE_LO = 0.45;
-  var RESIZE_HI = 0.55;
+  const RESIZE_LO = 0.45;
+  const RESIZE_HI = 0.55;
 
-  var ctx = canvas.getContext("2d");
-  var buf = document.createElement("canvas"); // full-res glyph render
-  var bctx = buf.getContext("2d");
-  var tmp = document.createElement("canvas"); // tiny downsampled buffer
-  var tctx = tmp.getContext("2d");
+  const ctx = canvas.getContext("2d");
+  const buf = document.createElement("canvas"); // full-res glyph render
+  const bctx = buf.getContext("2d");
+  const tmp = document.createElement("canvas"); // tiny downsampled buffer
+  const tctx = tmp.getContext("2d");
 
-  var idx = 0;
-  var fontPx = 48;
-  var dpr = 1;
-  var pad = 8; // horizontal breathing room (covers italic overhang)
-  var widthCss = 0; // current canvas width in css px (animated)
-  var heightCss = 0;
-  var baselineY = 0; // y of the alphabetic baseline inside the canvas
-  var maxBlock = 10; // largest pixel-block size, scaled to the font
-  var metrics = {}; // word -> { adv: [glyph widths], sum, w (= sum + pad) }
+  let idx = 0;
+  let fontPx = 48;
+  let dpr = 1;
+  let pad = 8; // horizontal breathing room (covers italic overhang)
+  let widthCss = 0; // current canvas width in css px (animated)
+  let heightCss = 0;
+  let baselineY = 0; // y of the alphabetic baseline inside the canvas
+  let maxBlock = 10; // largest pixel-block size, scaled to the font
+  let metrics = {}; // word -> { adv: [glyph widths], sum, w (= sum + pad) }
 
   // transition state
-  var morphing = false;
-  var morphStart = 0;
-  var phaseStart = 0;
-  var oldWord = "";
-  var newWord = "";
-  var outStart = []; // per-char dissolve-out start time (0..0.5)
-  var inStart = []; // per-char reform start time (0.5..1)
-  var outBlock = []; // per-char chunkiness while dissolving out
-  var inBlock = []; // per-char chunkiness while reforming
+  let morphing = false;
+  let morphStart = 0;
+  let phaseStart = 0;
+  let oldWord = "";
+  let newWord = "";
+  let outStart = []; // per-char dissolve-out start time (0..0.5)
+  let inStart = []; // per-char reform start time (0.5..1)
+  let outBlock = []; // per-char chunkiness while dissolving out
+  let inBlock = []; // per-char chunkiness while reforming
 
   function font() {
     return FONT.replace("%FONTPX%", fontPx);
@@ -65,12 +65,12 @@
     bctx.font = font();
     pad = Math.round(fontPx * 0.18);
     metrics = {};
-    for (var i = 0; i < WORDS.length; i++) {
-      var word = WORDS[i];
-      var adv = [];
-      var sum = 0;
-      for (var j = 0; j < word.length; j++) {
-        var w = bctx.measureText(word[j]).width;
+    for (let i = 0; i < WORDS.length; i++) {
+      const word = WORDS[i];
+      const adv = [];
+      let sum = 0;
+      for (let j = 0; j < word.length; j++) {
+        const w = bctx.measureText(word[j]).width;
         adv.push(w);
         sum += w;
       }
@@ -79,7 +79,7 @@
   }
 
   function measure() {
-    var cs = window.getComputedStyle(canvas);
+    const cs = window.getComputedStyle(canvas);
     fontPx = parseFloat(cs.fontSize) || 48;
     dpr = Math.max(1, window.devicePixelRatio || 1);
     maxBlock = Math.max(6, Math.round(fontPx / 6));
@@ -87,10 +87,10 @@
     // derive the real font metrics so the word sits on the text baseline
     bctx.setTransform(1, 0, 0, 1, 0, 0);
     bctx.font = font();
-    var tm = bctx.measureText("Mpqgy");
-    var asc = tm.fontBoundingBoxAscent || fontPx * 0.8;
-    var desc = tm.fontBoundingBoxDescent || fontPx * 0.2;
-    var vpad = Math.round(fontPx * 0.06); // tiny top/bottom safety margin
+    const tm = bctx.measureText("Mpqgy");
+    const asc = tm.fontBoundingBoxAscent || fontPx * 0.8;
+    const desc = tm.fontBoundingBoxDescent || fontPx * 0.2;
+    const vpad = Math.round(fontPx * 0.06); // tiny top/bottom safety margin
     heightCss = Math.ceil(asc + desc) + vpad * 2;
     baselineY = vpad + asc;
     // shift the inline canvas down so its drawn baseline meets the line's
@@ -113,10 +113,10 @@
 
   // left x-position of each character so the word is centred in the canvas
   function layout(word) {
-    var m = metrics[word];
-    var x = (widthCss - m.sum) / 2;
-    var xs = [];
-    for (var i = 0; i < word.length; i++) {
+    const m = metrics[word];
+    let x = (widthCss - m.sum) / 2;
+    const xs = [];
+    for (let i = 0; i < word.length; i++) {
       xs.push(x);
       x += m.adv[i];
     }
@@ -141,8 +141,8 @@
       ctx.drawImage(buf, 0, 0);
       return;
     }
-    var sw = Math.max(1, Math.round(widthCss / block));
-    var sh = Math.max(1, Math.round(heightCss / block));
+    const sw = Math.max(1, Math.round(widthCss / block));
+    const sh = Math.max(1, Math.round(heightCss / block));
     tmp.width = sw;
     tmp.height = sh;
     tctx.imageSmoothingEnabled = true; // averaging down-sample
@@ -153,9 +153,9 @@
   }
 
   function renderCrisp(word) {
-    var xs = layout(word);
+    const xs = layout(word);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (var i = 0; i < word.length; i++) {
+    for (let i = 0; i < word.length; i++) {
       drawGlyph(word[i], xs[i]);
       blit(1);
     }
@@ -163,23 +163,23 @@
 
   // render `word` where each character has its own pixelation amount (0..1)
   function renderStaggered(word, pix, blocks) {
-    var xs = layout(word);
+    const xs = layout(word);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (var i = 0; i < word.length; i++) {
+    for (let i = 0; i < word.length; i++) {
       drawGlyph(word[i], xs[i]);
       blit(1 + pix[i] * (blocks[i] - 1));
     }
   }
 
   function randomStarts(len, lo, hi) {
-    var arr = [];
-    for (var i = 0; i < len; i++) arr.push(lo + Math.random() * (hi - lo));
+    const arr = [];
+    for (let i = 0; i < len; i++) arr.push(lo + Math.random() * (hi - lo));
     return arr;
   }
 
   function randomBlocks(len) {
-    var arr = [];
-    for (var i = 0; i < len; i++)
+    const arr = [];
+    for (let i = 0; i < len; i++)
       arr.push(maxBlock * (0.7 + Math.random() * 0.6));
     return arr;
   }
@@ -200,12 +200,12 @@
   // (fully pixelated) midpoint so the surrounding text reflows smoothly
   function displayWidth(now) {
     if (!morphing) return metrics[WORDS[idx]].w;
-    var p = (now - morphStart) / MORPH;
-    var ow = metrics[oldWord].w;
-    var nw = metrics[newWord].w;
+    const p = (now - morphStart) / MORPH;
+    const ow = metrics[oldWord].w;
+    const nw = metrics[newWord].w;
     if (p <= RESIZE_LO) return ow;
     if (p >= RESIZE_HI) return nw;
-    var t = (p - RESIZE_LO) / (RESIZE_HI - RESIZE_LO);
+    let t = (p - RESIZE_LO) / (RESIZE_HI - RESIZE_LO);
     t = t * t * (3 - 2 * t); // smoothstep
     return ow + (nw - ow) * t;
   }
@@ -214,12 +214,12 @@
     if (!phaseStart) phaseStart = now;
     if (!morphing && now - phaseStart >= HOLD) beginMorph(now);
 
-    var word = WORDS[idx];
-    var pix = null;
-    var blocks = null;
+    let word = WORDS[idx];
+    let pix = null;
+    let blocks = null;
 
     if (morphing) {
-      var p = (now - morphStart) / MORPH;
+      const p = (now - morphStart) / MORPH;
       if (p >= 1) {
         idx = (idx + 1) % WORDS.length;
         morphing = false;
@@ -229,14 +229,14 @@
         word = oldWord;
         blocks = outBlock;
         pix = [];
-        for (var i = 0; i < oldWord.length; i++) {
+        for (let i = 0; i < oldWord.length; i++) {
           pix.push(clamp01((p - outStart[i]) / RAMP)); // crisp -> blocks
         }
       } else {
         word = newWord;
         blocks = inBlock;
         pix = [];
-        for (var j = 0; j < newWord.length; j++) {
+        for (let j = 0; j < newWord.length; j++) {
           pix.push(1 - clamp01((p - inStart[j]) / RAMP)); // blocks -> crisp
         }
       }
@@ -251,7 +251,7 @@
 
   function start() {
     measure();
-    var reduce =
+    const reduce =
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
@@ -262,7 +262,7 @@
     requestAnimationFrame(frame);
   }
 
-  var resizeTimer;
+  let resizeTimer;
   window.addEventListener("resize", function () {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(measure, 150);

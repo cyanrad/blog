@@ -7,3 +7,12 @@
     display: inline-block;
     vertical-align: -0.18em;
 }
+
+/* 3D cursor-tilt for blog cards (rotation applied by cards-3d.js) */
+.card-3d {
+    perspective: 800px;
+}
+.card-tilt {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
