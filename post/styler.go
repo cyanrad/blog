@@ -9,7 +9,7 @@ import "bytes"
 func StyleHTML(inputHTML []byte) []byte {
 	outputHTML := make([]byte, len(inputHTML))
 	copy(outputHTML, inputHTML)
-	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<p>`), []byte(`<p class="mb-4 text-lg text-neutral-200 sm:text-justify sm:text-xl">`))
+	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<p>`), []byte(`<p class="mb-4 text-justify text-lg text-neutral-200 sm:text-left sm:text-xl">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<strong>`), []byte(`<strong class="text-indigo-300">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<em>`), []byte(`<em class="text-indigo-300">`))
 	outputHTML = bytes.ReplaceAll(outputHTML, []byte(`<ul class="incremental">`), []byte(`<ul class="mb-4 list-disc pl-4 text-lg sm:text-xl text-neutral-200 marker:text-indigo-400">`))

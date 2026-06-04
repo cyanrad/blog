@@ -13,7 +13,7 @@ templ Card(title string, id string, tag string, date string, readingTime int) {
 					<em class="mb-3 font-serif text-2xl text-neutral-200 duration-200 group-hover:delay-100 group-hover:text-slate-300">
 						{ title }
 					</em>
-					<p class="font-serif text-xs sm:text-sm text-neutral-400 duration-200 group-hover:delay-100 group-hover:text-slate-400">
+					<p class="font-mono text-xs sm:text-xs text-neutral-400 duration-200 group-hover:delay-100 group-hover:text-slate-400">
 						{ tag } &#x2022; { date } &#x2022; <span class="text-emerald-400">{ strconv.Itoa(readingTime) + " Minutes" }</span>
 					</p>
 				</div>

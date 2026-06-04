@@ -8,6 +8,9 @@ templ Post(body templ.Component, title string, hook string, tag string, date str
 		<link rel="stylesheet" href="/static/atom-one-dark-reasonable.min.css"/>
 		<script src="/static/highlight.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="preconnect" href="https://fonts.googleapis.com"/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
 	</head>
 	<body class="mt-24 flex justify-center bg-zinc-900 font-serif">
 		<script>
@@ -19,7 +22,7 @@ templ Post(body templ.Component, title string, hook string, tag string, date str
 		</a>
 		<div class="mt-12 w-[64rem] pl-8 pr-8 sm:pl-16 sm:pr-16 sm:text-justify md:mt-0 md:pl-32 md:pr-32">
 			<h1 class="mb-6 text-5xl font-semibold text-neutral-200 sm:text-6xl">{ title }</h1>
-			<p class="text-md text-neutral-400 sm:text-justify sm:text-lg">{ tag } &#x2022; { date } &#x2022; { strconv.Itoa(readingTime) + "  Minutes" }</p>
+			<p class="font-mono text-md text-neutral-400 sm:text-justify sm:text-lg">{ tag } &#x2022; { date } &#x2022; { strconv.Itoa(readingTime) + "  Minutes" }</p>
 			<br/>
 			<em class="text-justify text-xl text-neutral-400 sm:text-2xl">{ hook }</em>
 			<hr class="mb-12 opacity-50"/>
