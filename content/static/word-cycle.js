@@ -17,7 +17,8 @@
   canvas.setAttribute("aria-label", WORDS.join(", "));
 
   const COLOR = "#34d399"; // emerald-400, matches the surrounding text
-  const FONT = 'italic %FONTPX%px Georgia, Cambria, "Times New Roman", serif';
+  const FONT =
+    'italic %FONTPX%px "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace';
   const HOLD = 2500; // ms a word stays crisp
   const MORPH = 1500; // ms for the full pixelate -> reform transition
   const RAMP = 0.3; // each char's ramp length, as a fraction of the morph (0..0.5)
@@ -254,6 +255,18 @@
     const reduce =
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // the web font may not be ready yet: re-measure (and re-render) once it loads
+    if (document.fonts && document.fonts.load) {
+      document.fonts.load('italic 1em "JetBrains Mono"').then(function () {
+        measure();
+        if (reduce) {
+          setCanvasWidth(metrics[WORDS[0]].w);
+          renderCrisp(WORDS[0]);
+        }
+      });
+    }
+
     if (reduce) {
       setCanvasWidth(metrics[WORDS[0]].w);
       renderCrisp(WORDS[0]); // honour reduced-motion: just show the first word

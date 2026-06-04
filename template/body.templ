@@ -7,6 +7,9 @@ templ Body(cards []templ.Component) {
 			<title>Radwan's Awesome Blog</title>
 			<link rel="stylesheet" href="static/style.css"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
 		</head>
 		<body class="flex flex-col bg-zinc-900">
 			<div class="h-12 md:h-24"></div>
@@ -29,8 +32,7 @@ templ Body(cards []templ.Component) {
 				}
 			</div>
 			<div class="h-32"></div>
-			<footer class="bottom-0 w-full text-center">
-				<p class="text-sm text-neutral-400">author: literally the header</p>
+			<footer class="bottom-0 w-full text-center font-mono">
 				<p class="text-sm text-neutral-400"><a href="mailto:radwan.m.jabraouti@gmail.com">rjabraouti@outlook.com</a></p>
 				<p class="text-sm text-neutral-400">
 					built with:
