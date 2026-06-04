@@ -3,10 +3,11 @@ package template
 import "strconv"
 
 templ Card(title string, id string, tag string, date string, readingTime int) {
-	<a href={ templ.URL("post/" + id) } class="card-3d group m-4 block">
-		<!-- outer div to rotate without having the transition time of the inner div -->
-		<div class="card-tilt">
-			<div class="flex w-72 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 shadow-md shadow-emerald-900 transition duration-300 group-hover:border-indigo-500 group-hover:bg-neutral-900 group-hover:shadow-lg group-hover:shadow-indigo-900 group-hover:delay-100 group-hover:duration-300 min-[380px]:w-80 min-[520px]:w-96">
+	<a href={ templ.URL("post/" + id) } class="card-3d group relative m-4 block">
+		<!-- green backing: hidden behind the card at rest, counter-rotates on hover -->
+		<div class="card-back absolute inset-0 z-0 rounded-md bg-emerald-400 transition-colors duration-500 group-hover:bg-indigo-500 will-change-transform"></div>
+		<div class="card-tilt relative z-10">
+			<div class="flex w-72 flex-col justify-end rounded-md border-2 border-solid border-emerald-400 bg-neutral-800 p-2 transition-colors duration-500 group-hover:border-indigo-500 min-[380px]:w-80 min-[520px]:w-96">
 				<div class="m-2 flex flex-col justify-end overflow-hidden rounded-md">
 					<img src={ "static/thumbnail/" + id + ".png" } class="mb-3 w-full rounded-md"/>
 					<em class="mb-3 font-serif text-2xl text-neutral-200 duration-200 group-hover:delay-100 group-hover:text-slate-300">

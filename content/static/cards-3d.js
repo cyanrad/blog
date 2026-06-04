@@ -21,6 +21,7 @@
 
   function bind(card) {
     const tilt = card.querySelector(".card-tilt"); // getting the first card tilt element inside the card
+    const back = card.querySelector(".card-back"); // green backing layer, counter-rotates
     if (!tilt) return;
 
     // currently applied rotation (deg)
@@ -78,6 +79,12 @@
 
       tilt.style.transform =
         "rotateY(" + curY + "deg) rotateX(" + curX + "deg)";
+
+      // the green backing rotates the opposite way for a parallax/depth split
+      if (back) {
+        back.style.transform =
+          "rotateY(" + -curY + "deg) rotateX(" + -curX + "deg)";
+      }
 
       // keep animating while hovered, or until the ease-back finishes
       if (active || !done) {
