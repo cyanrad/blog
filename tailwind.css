@@ -16,3 +16,65 @@
     transform-style: preserve-3d;
     will-change: transform;
 }
+
+/* ── code block syntax theme (highlight.js), matched to the site palette ──
+   the <pre> provides the container background; the highlighted <code> is
+   transparent so token colours read against it. */
+pre code.hljs {
+    display: block;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: #e5e5e5; /* neutral-200 — base text */
+}
+.hljs-comment,
+.hljs-quote {
+    color: #737373; /* neutral-500 */
+    font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-section,
+.hljs-doctag,
+.hljs-meta,
+.hljs-meta .hljs-keyword {
+    color: #818cf8; /* indigo-400 — keywords / structure */
+}
+.hljs-built_in,
+.hljs-type,
+.hljs-number,
+.hljs-class .hljs-title,
+.hljs-symbol,
+.hljs-attribute {
+    color: #a5b4fc; /* indigo-300 — types / numbers */
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-meta .hljs-string {
+    color: #34d399; /* emerald-400 — strings */
+}
+.hljs-title,
+.hljs-title.function_,
+.hljs-name,
+.hljs-tag,
+.hljs-attr {
+    color: #6ee7b7; /* emerald-300 — function / tag names */
+}
+.hljs-variable,
+.hljs-template-variable,
+.hljs-params,
+.hljs-bullet,
+.hljs-link {
+    color: #e5e5e5; /* neutral-200 */
+}
+.hljs-deletion {
+    color: #f87171; /* red-400 — diffs */
+}
+.hljs-emphasis {
+    font-style: italic;
+}
+.hljs-strong {
+    font-weight: 700;
+}
